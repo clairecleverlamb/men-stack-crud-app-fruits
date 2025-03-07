@@ -26,6 +26,9 @@ app.use(methodOverride('_method'))
 // method override reads the "-method query param for information about delete or put request "
 app.use(morgan('dev'));
 
+//
+app.use(express.static('public'));
+
 
 
 // Build the route, async handler 
@@ -75,7 +78,19 @@ app.get('/fruits/:fruitId', async (req, res) => {
 app.delete('/fruits/:fruitId', async (req, res) => {
     await Fruit.findByIdAndDelete(req.params.fruitId);
     res.redirect('/fruits');
-})
+});
+
+// edit route - used to send a page to the client with an edit form pre-filled out with fruit details
+// so that users can edit the form and submit the form
+app.get('/fruits/:fruitId/edit', async (req, res) => {
+    // 1. look up the fruit by id
+    const foundFruit = await Fruit.findById(req.params.fruitId);
+    // 2. respond with a "edit" template with an edit form
+    res.render('fruits/edit.ejs', { fruit: foundFruit });
+});
+
+// update route - used to capture edit form submissions
+// from the client and send updates to MongoDB
 
 app.listen(3000, () => {
     console.log("Listening on port 3000");
