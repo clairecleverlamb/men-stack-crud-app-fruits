@@ -10,6 +10,13 @@
         console.log("this can be showed on client");
     </script>
     <h1>All Fruits</h1>
+    <nav>
+        <ul>
+            <li>
+                <a href="/fruits/new"> Add New Fruit </a>
+            </li>
+        </ul>
+    </nav>
     <ul>
         <!-- accessing fruits from  res.render('fruits/index.ejs', { fruits: allFruits }); -->
         <% fruits.forEach(fruit => { %>
