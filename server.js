@@ -12,6 +12,10 @@ mongoose.connection.on("connected", () => {
     console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
   });
 
+mongoose.connection.on('error', () =>{
+    console.log(`An error connecting to MONGODB has occurred: ${error}`)
+});
+
 // mount middleware functions here
 // body parser middleware: this function reads the  request 
 // and decodes it into req.body so we can access form data;
@@ -38,6 +42,9 @@ app.post('/fruits', async(req, res) => {
     } else {
         req.body.isReadyToEat = false; 
     }
+
+    // req.body.isReadyToEat = !!req.body.isReadyToEat;
+    
     // create the data in our database
     await Fruit.create(req.body);
     // redirect tells the client to nav to a new URL path/another page
