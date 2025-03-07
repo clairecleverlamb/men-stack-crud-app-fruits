@@ -45,6 +45,15 @@ app.post('/fruits', async(req, res) => {
 });
 
 
+// index route for fruits - sends a page that lists 
+// all fruits from the data , add async route handler
+app.get('/fruits', async(req, res) => {
+    const allFruits = await Fruit.find({});
+    // console.log(allFruits);
+    res.render('fruits/index.ejs', { fruits: allFruits }); // context object: everything that the template should know
+});
+
+
 app.listen(3000, () => {
     console.log("Listening on port 3000");
 });
