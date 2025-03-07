@@ -44,11 +44,11 @@ app.post('/fruits', async(req, res) => {
     }
 
     // req.body.isReadyToEat = !!req.body.isReadyToEat;
-    
+
     // create the data in our database
     await Fruit.create(req.body);
     // redirect tells the client to nav to a new URL path/another page
-    res.redirect('/fruits/new');  // url path
+    res.redirect('/fruits');  // url path
 });
 
 
