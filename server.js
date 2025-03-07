@@ -2,6 +2,8 @@ const dotenv = require('dotenv');
 const express = require('express');
 const mongoose = require('mongoose');
 const Fruit = require('./models/fruit');
+const methodOverride = require('method-override');
+const morgan = require('morgan');
 
 const app = express(); 
 
@@ -20,6 +22,9 @@ mongoose.connection.on('error', () =>{
 // body parser middleware: this function reads the  request 
 // and decodes it into req.body so we can access form data;
 app.use(express.urlencoded({ extended: false})); // always false
+app.use(methodOverride('_method'))
+// method override reads the "-method query param for information about delete or put request "
+app.use(morgan('dev'));
 
 
 
@@ -60,6 +65,17 @@ app.get('/fruits', async(req, res) => {
     res.render('fruits/index.ejs', { fruits: allFruits }); // context object: everything that the template should know
 });
 
+app.get('/fruits/:fruitId', async (req, res) => {
+    const foundFruit = await Fruit.findById(req.params.fruitId);
+    res.render('fruits/show.ejs', { fruit: foundFruit }); 
+    // show route- for sending a page with details for one particular fruit
+});
+
+// delete route, once matched by server.js, send an action to MONGODB to delete the document using its id
+app.delete('/fruits/:fruitId', async (req, res) => {
+    await Fruit.findByIdAndDelete(req.params.fruitId);
+    res.redirect('/fruits');
+})
 
 app.listen(3000, () => {
     console.log("Listening on port 3000");
