@@ -14,13 +14,13 @@
             </li>
         </ul>
     </nav>
-    <form action="/fruits" method="post">
-        <label for="name"> Name: </label>
+    <form action="/fruits/<%= fruit._id %>?_method=PUT" method="post">
+        <label for="name">Name:</label>
         <input type="text" name="name" id="name" value="<%= fruit.name %>"> 
 
         <label for="isReadyToEat"> Ready to Eat? <%  %></label>
         <input type="checkbox" name="isReadyToEat" id="isReadyToEat" <% if(fruit.isReadyToEat) { %> checked <% } %>>
-        <button type="submit"> Add Fruit</button>
+        <button type="submit"> Edit Fruit</button>
     </form>  
 </body>
 </html>

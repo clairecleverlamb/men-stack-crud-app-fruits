@@ -10,7 +10,7 @@
         <nav>
             <ul>
                 <li>
-                    <a href="/fruits"> Back to Fruits</a>
+                    <a href="/fruits">Back to Fruits</a>
                 </li>
             </ul>
         </nav>
@@ -21,8 +21,9 @@
           <p>This fruit is not ready to eat!</p>
         <% } %>
 
-        <form action="/fruits/<% fruit._id %>?_method=DELETE" method = "post">
-            <button type="submit"> Delete <% fruit.name %></button>
+        <form action="/fruits/<%= fruit._id %>?_method=DELETE" method= "POST">
+            <button type="submit">Delete <%= fruit.name %></button>
         </form>
+        <a href="/fruits/<%= fruit._id %>/edit">Edit <%= fruit.name %></a>
 </body>
 </html>
