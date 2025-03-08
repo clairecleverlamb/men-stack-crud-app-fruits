@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create a Fruit</title>
 </head>
+
 <body>
     <h1>Create a New Fruit</h1>
     <nav>
@@ -17,9 +19,15 @@
     <form action="/fruits" method="post">
         <label for="name"> Name: </label>
         <input type="text" name="name" id="name">
-        <label for="isReadyToEat"> Ready to Eat? </label>
-        <input type="checkbox" name="isReadyToEat" id="isReadyToEat">
+        <!-- <label for="isReadyToEat"> Ready to Eat? </label> -->
+        <!-- <input type="checkbox" name="isReadyToEat" id="isReadyToEat"> -->
+        <!-- new.ejs / edit.ejs -->
+        <div class="checkbox-div">
+            <label for="ready-to-eat">Ready to Eat?</label>
+            <input type="checkbox" name="isReadyToEat" id="ready-to-eat" />
+        </div>
         <button type="submit">Add Fruit</button>
-    </form>  
+    </form>
 </body>
+
 </html>

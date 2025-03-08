@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit a Fruit</title>
 </head>
+
 <body>
-    <h1>Edit <%= fruit.name %></h1>
+    <h1>Edit <%= fruit.name %>
+    </h1>
     <nav>
         <ul>
             <li>
-                <a href="/fruits">Back to Fruits</a>
+                <a class="fruits-index-link" href="/fruits">
+                    <div class="index-link-text">Back to Fruits</div>
+                </a>
             </li>
         </ul>
     </nav>
     <form action="/fruits/<%= fruit._id %>?_method=PUT" method="post">
         <label for="name">Name:</label>
-        <input type="text" name="name" id="name" value="<%= fruit.name %>"> 
-
-        <label for="isReadyToEat"> Ready to Eat? <%  %></label>
-        <input type="checkbox" name="isReadyToEat" id="isReadyToEat" <% if(fruit.isReadyToEat) { %> checked <% } %>>
+        <input type="text" name="name" id="name" value="<%= fruit.name %>">
+        <div class="checkbox-div" >
+                <label for="isReadyToEat"> Ready to Eat? <% %></label>
+                <input type="checkbox" name="isReadyToEat" id="isReadyToEat" <% if(fruit.isReadyToEat) { %> checked <% } %>>
+        </div>
         <button type="submit"> Edit Fruit</button>
-    </form>  
+    </form>
 </body>
+
 </html>

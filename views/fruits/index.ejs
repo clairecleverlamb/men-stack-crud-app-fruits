@@ -6,14 +6,17 @@
     <title>Fruits Index</title>
 </head>
 <body>
-    <script>
+    <!-- <script>
         console.log("this can be showed on client");
-    </script>
-    <h1>All Fruits</h1>
+    </script> -->
+    <div>
+        <h1>All Fruits</h1>
+    </div>
+    <a class="fruits-index-link" href="/fruits">Browse Fruits</a>
     <nav>
         <ul>
             <li>
-                <a href="/fruits/new"> Add New Fruit </a>
+                <a class="add-fruit" href="/fruits/new"> Add New Fruit </a>
             </li>
         </ul>
     </nav>
@@ -21,7 +24,7 @@
         <!-- accessing fruits from  res.render('fruits/index.ejs', { fruits: allFruits }); -->
         <% fruits.forEach(fruit => { %>
             <li>
-                <a href="/fruits/<%= fruit._id %>"> 
+                <a class="fruit-" href="/fruits/<%= fruit._id %>"> 
                     <%= fruit.name %></li>
                 </a>  
         <% }); %>
