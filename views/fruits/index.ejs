@@ -20,7 +20,10 @@
     <ul>
         <!-- accessing fruits from  res.render('fruits/index.ejs', { fruits: allFruits }); -->
         <% fruits.forEach(fruit => { %>
-            <li><%= fruit.name %></li>
+            <li>
+                <a href="/fruits/<%= fruit._id %>"> 
+                    <%= fruit.name %></li>
+                </a>  
         <% }); %>
     </ul>
 </body>
