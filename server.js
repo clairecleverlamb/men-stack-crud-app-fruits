@@ -22,7 +22,7 @@ mongoose.connection.on('error', () =>{
 // body parser middleware: this function reads the  request 
 // and decodes it into req.body so we can access form data;
 app.use(express.urlencoded({ extended: false})); // always false
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
 // method override reads the "-method query param for information about delete or put request "
 app.use(morgan('dev'));
 
@@ -76,6 +76,7 @@ app.get('/fruits/:fruitId', async (req, res) => {
 
 // delete route, once matched by server.js, send an action to MONGODB to delete the document using its id
 app.delete('/fruits/:fruitId', async (req, res) => {
+    console.log('delete fruit with ID', req.params.fruitId);
     await Fruit.findByIdAndDelete(req.params.fruitId);
     res.redirect('/fruits');
 });
@@ -91,6 +92,17 @@ app.get('/fruits/:fruitId/edit', async (req, res) => {
 
 // update route - used to capture edit form submissions
 // from the client and send updates to MongoDB
+app.put("/fruits/:fruitId", async (req, res) => {
+    if (req.body.isReadyToEat === 'on') {
+        req.body.isReadyToEat = true;
+    } else {
+        req.body.isReadyToEat = false;
+    }
+
+    await Fruit.findByIdAndUpdate(req.params.fruitId, req.body);
+    res.redirect(`/fruits/${req.params.fruitId}`);
+});
+
 
 app.listen(3000, () => {
     console.log("Listening on port 3000");
